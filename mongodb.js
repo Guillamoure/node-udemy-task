@@ -10,8 +10,25 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true, useUnifiedTopology: 
 
   const db = client.db(databaseName)
 
-  db.collection('users').insertOne({
-    name: "Guillamoure",
-    age: 21
-  })
+
+  const mongodbInsertOne = (collection, object) => {
+    db.collection(collection).insertOne(object, (error, result) => {
+      if (error){return console.log(`Unable to insert document into ${collection}`)}
+      console.log(result.ops)
+    })
+  }
+
+  const mongodbInsertMany = (collection, array) => {
+    db.collection(collection).insertMany(array, (error, result) => {
+      if (error){return console.log(`Unable to insert document into ${collection}`)}
+      console.log(result.ops)
+    })
+  }
+
+  mongodbInsertMany('tasks', [
+    { description: "Cooked Lunch", completed: true},
+    { description: "Cleaned House", completed: false},
+    { description: "Mailed Letter", completed: false}
+  ])
+
 })
