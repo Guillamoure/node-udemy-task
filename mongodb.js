@@ -24,14 +24,13 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true, useUnifiedTopology: 
     })
   }
 
-  db.collection('tasks').updateMany({
-    completed: false
-  }, {
-    $set: { completed: true }
+  db.collection('tasks').deleteOne({
+    description: "Mailed Letter"
   })
-    .then((result) => {
+    .then(result => {
       console.log(result)
-    }).catch((error) => {
+    })
+    .catch(error => {
       console.log(error)
     })
 
