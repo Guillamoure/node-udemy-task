@@ -19,7 +19,8 @@
   "homepage": "https://github.com/Guillamoure/node-udemy-task#readme",
   "dependencies": {
     "mongodb": "^3.5.7",
-    "mongoose": "^5.9.16"
+    "mongoose": "^5.9.16",
+    "validator": "^13.0.0"
   },
   "devDependencies": {}
 }
