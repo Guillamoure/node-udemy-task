@@ -22,6 +22,15 @@ const User = mongoose.model('User', {
       if(!validator.isEmail(value)){throw new Error('Email is invalid')}
     }
   },
+  password: {
+    type: String,
+    required: true,
+    trim: true,
+    minlength: 7,
+    validate(value){
+      if(value.includes("password")){throw new Error('Password cannot contain "password".')}
+    }
+  },
   age: {
     type: Number,
     default: 0,
@@ -31,22 +40,25 @@ const User = mongoose.model('User', {
   }
 })
 
-let me = new User({name: "Guillamoure    ", email: "Mike@ikea.net"})
-
-me.save()
-  .then(console.log)
-  .catch(console.log)
+// let me = new User({name: "Guillamoure    ", email: "Mike@ikea.net", password: "wwwwwwmdrwwwwww"})
+//
+// me.save()
+//   .then(console.log)
+//   .catch(console.log)
 
 const Task = mongoose.model('Task', {
   description: {
-    type: String
+    type: String,
+    trim: true,
+    required: true
   },
   completed: {
-    type: Boolean
+    type: Boolean,
+    default: false
   }
 })
 
-// new Task({description: "Make Dinner", completed: false})
-//   .save()
-//     .then(console.log)
-//     .catch(console.log)
+new Task({description: "Clean Island"})
+  .save()
+    .then(console.log)
+    .catch(console.log)
