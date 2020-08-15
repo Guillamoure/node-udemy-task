@@ -14,9 +14,9 @@ const port = process.env.PORT || 4000
 // 	}
 // })
 
-app.use((req, res, next) => {
-	res.status(503).send('Site is temporarily down for maintainence')
-})
+// app.use((req, res, next) => {
+// 	res.status(503).send('Site is temporarily down for maintainence')
+// })
 
 app.use(express.json())
 app.use(userRouter)
