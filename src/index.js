@@ -6,22 +6,6 @@ const taskRouter = require('./routers/task')
 const app = express()
 const port = process.env.PORT || 4000
 
-const multer = require('multer')
-const upload = multer({
-	dest: 'images'
-})
-
-const errorMiddleware = (req, res, next) => {
-	throw new Error('From my middleware')
-}
-app.post('/upload', upload.single('upload'), (req, res) => {
-	res.send()
-}, (error, req, res, next) => {
-	res.status(400).send({error: error.message})
-})
-
-
-
 app.use(express.json())
 app.use(userRouter)
 app.use(taskRouter)
