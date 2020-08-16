@@ -6,9 +6,25 @@ console.log(process.env.SENDGRID_API_KEY)
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
-sgMail.send({
-	to: '',
-	from: '',
-	subject: 'This is my first creation!',
-	text: 'I hope this one actually gets to you.'
-})
+const sendWelcomeEmail = (email, name) => {
+	sgMail.send({
+		to: email,
+		from: '',
+		subject: 'Welcome to the App!',
+		text: `Welcome to the app, ${name}. Let me know how you get along with the app.`
+	})
+}
+
+const sendCancelEmail = (email, name) => {
+	sgMail.send({
+		to: email,
+		from: '',
+		subject: 'Sorry to see you go!',
+		text: `Sorry to see you go, ${name}. Let us know if there was anything we could've done to keep you with us!`
+	})
+}
+
+module.exports = {
+	sendWelcomeEmail,
+	sendCancelEmail
+}
